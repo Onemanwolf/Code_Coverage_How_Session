@@ -254,8 +254,7 @@ Below is the example `coverage.cobertura.xml` file.
 
 
 
-:bulb:
->Tip
+:bulb:                                                                      >Tip
 As an alternative, you could use the MSBuild package if your build system already makes use of MSBuild. From the command prompt, change directories to the XUnit.Coverlet.MSBuild project, and run the dotnet test command:
 
 .NET Core CLI
