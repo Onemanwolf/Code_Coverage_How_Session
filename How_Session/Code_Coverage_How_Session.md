@@ -167,7 +167,7 @@ The xUnit test project template already integrates with [coverlet.collector](htt
 ```Console
 cd XUnit.Coverlet.Collector && dotnet test --collect:"XPlat Code Coverage"
 ```
-
+:pencil2:
  >Note: The "XPlat Code Coverage" argument is a friendly name that corresponds to the data collectors from Coverlet. This name is required but is case insensitive.
 
  As part of the `dotnet test run`, a resulting `coverage.cobertura.xml` file is output to the TestResults directory. The XML file contains the results. This is a cross platform option that relies on the .NET Core CLI, and it is great for build systems where MSBuild is not available.
@@ -254,7 +254,8 @@ Below is the example `coverage.cobertura.xml` file.
 
 
 
-:bulb:                                                                      >Tip
+:bulb:
+>Tip
 As an alternative, you could use the MSBuild package if your build system already makes use of MSBuild. From the command prompt, change directories to the XUnit.Coverlet.MSBuild project, and run the dotnet test command:
 
 .NET Core CLI
