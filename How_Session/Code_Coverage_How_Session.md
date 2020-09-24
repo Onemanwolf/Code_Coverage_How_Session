@@ -256,14 +256,77 @@ Below is the example `coverage.cobertura.xml` file.
 
 :bulb:
 >Tip
-As an alternative, you could use the MSBuild package if your build system already makes use of MSBuild. From the command prompt, change directories to the XUnit.Coverlet.MSBuild project, and run the dotnet test command:
+>
+>As an alternative, you could use the MSBuild package if your build system >already makes use of MSBuild. From the command prompt, change directories >to the XUnit.Coverlet.MSBuild project, and run the `dotnet test` command:
+>
+>```.NET Core CLI
+>dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+>
+>```
+>
+>The resulting coverage.cobertura.xml file is output.
+>
+>You can follow msbuild integration guide here
 
-.NET Core CLI
 
-Copy
-dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
-The resulting coverage.cobertura.xml file is output.
-You can follow msbuild integration guide here
+# Generate reports
 
-Generate reports
 Now that you're able to collect data from unit test runs, you can generate reports using ReportGenerator. To install the ReportGenerator NuGet package as a .NET global tool, use the dotnet tool install command:
+
+```Console
+dotnet tool install -g dotnet-reportgenerator-globaltool
+```
+Run the tool and provide the desired options, given the output coverage.cobertura.xml file from the previous test run.
+
+```Console
+reportgenerator
+"-reports:Path\To\TestProject\TestResults\{guid}\coverage.cobertura.xml"
+"-targetdir:coveragereport"
+-reporttypes:Html
+```
+
+After running this command, an HTML file represents the generated report.
+
+
+![Report](https://docs.microsoft.com/en-us/dotnet/core/testing/media/test-report.png)
+
+
+
+# Unit Test AutoMapper
+
+
+```C#
+
+
+```
+
+```C#
+public class ModelMapperServiceShould
+    {
+        [Fact]
+       public void MapConfiguraton()
+        {
+            var sut = new ModelMapperService();
+
+            var config = sut._config;
+
+            config.AssertConfigurationIsValid();
+        }
+
+
+        [Fact]
+        public void MapBrainstormToDto()
+        {
+            //Arrange
+            var fixture = new Fixture();
+            var sut = new ModelMapperService();
+            var session = fixture.Create<BrainstormSession>();
+
+            //Act
+            var dto = sut.MapBrainstormSessionToDto(session);
+
+
+            //Assert
+            dto.Should().BeOfType<BrainstormSessionDto>();
+        }
+```
