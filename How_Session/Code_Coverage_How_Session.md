@@ -140,25 +140,23 @@ This will create a new solution file name XUnit.Coverage in the UnitTestingCodeC
 dotnet sln XUnit.Coverage.sln add (ls **/*.csproj) --in-root
 
 ```
+
 Build the solution using the dotnet build command:
 
 ```C#
 dotnet build
 ```
 
-
 If the build is successful, you've created the three projects, appropriately referenced projects and packages, and updated the source code correctly. Well done!
 
-
 # Tooling
+
 There are two types of code coverage tools:
 
 - DataCollectors: DataCollectors monitor test execution and collect information about test runs. They report the collected information in various output formats, such as XML and JSON. For more information, see your first DataCollector.
 - Report generators: Use data collected from test runs to generate reports, often as styled HTML.
 
 In this section, the focus is on data collector tools. To use Coverlet for code coverage, an existing unit test project must have the appropriate package dependencies, or alternatively rely on [.NET global tooling](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) and the corresponding [coverlet.console](https://www.nuget.org/packages/coverlet.console) NuGet package.
-
-
 
 # Integrate with .NET test
 
@@ -167,13 +165,14 @@ The xUnit test project template already integrates with [coverlet.collector](htt
 ```Console
 cd XUnit.Coverlet.Collector && dotnet test --collect:"XPlat Code Coverage"
 ```
-:pencil2:
- >Note: The "XPlat Code Coverage" argument is a friendly name that corresponds to the data collectors from Coverlet. This name is required but is case insensitive.
 
- As part of the `dotnet test run`, a resulting `coverage.cobertura.xml` file is output to the TestResults directory. The XML file contains the results. This is a cross platform option that relies on the .NET Core CLI, and it is great for build systems where MSBuild is not available.
+:pencil2:
+
+> Note: The "XPlat Code Coverage" argument is a friendly name that corresponds to the data collectors from Coverlet. This name is required but is case insensitive.
+
+As part of the `dotnet test run`, a resulting `coverage.cobertura.xml` file is output to the TestResults directory. The XML file contains the results. This is a cross platform option that relies on the .NET Core CLI, and it is great for build systems where MSBuild is not available.
 
 Below is the example `coverage.cobertura.xml` file.
-
 
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
@@ -252,22 +251,20 @@ Below is the example `coverage.cobertura.xml` file.
 
 ```
 
-
-
 :bulb:
->Tip
->
->As an alternative, you could use the MSBuild package if your build system >already makes use of MSBuild. From the command prompt, change directories >to the XUnit.Coverlet.MSBuild project, and run the `dotnet test` command:
->
->```.NET Core CLI
->dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
->
->```
->
->The resulting coverage.cobertura.xml file is output.
->
->You can follow msbuild integration guide here
 
+> Tip
+>
+> As an alternative, you could use the MSBuild package if your build system >already makes use of MSBuild. From the command prompt, change directories >to the XUnit.Coverlet.MSBuild project, and run the `dotnet test` command:
+>
+> ```.NET Core CLI
+> dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+>
+> ```
+>
+> The resulting coverage.cobertura.xml file is output.
+>
+> You can follow msbuild integration guide here
 
 # Generate reports
 
@@ -276,6 +273,7 @@ Now that you're able to collect data from unit test runs, you can generate repor
 ```Console
 dotnet tool install -g dotnet-reportgenerator-globaltool
 ```
+
 Run the tool and provide the desired options, given the output coverage.cobertura.xml file from the previous test run.
 
 ```Console
@@ -287,26 +285,80 @@ reportgenerator
 
 After running this command, an HTML file represents the generated report.
 
-
 ![Report](https://docs.microsoft.com/en-us/dotnet/core/testing/media/test-report.png)
-
-
 
 # Unit Test AutoMapper
 
+Create a Mapper service `MapDtoService` that implements `IMapper<AuditorDTO, Auditor>` interface.
+
+
+Add usings
 
 ```C#
 
+using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+```
+Now add the replace class with below:
+
+```C#
+    public class MapDtoService : IMapper<AuditorDTO, Auditor>
+    {
+
+        public MapperConfiguration _config { get; set; }
+        public Mapper _mapper { get; set; }
+        public MapDtoService()
+        {
+            _config = new MapperConfiguration(cfg => cfg.CreateMap<Auditor, AuditorDTO>());
+            _mapper = new Mapper(_config);
+        }
+
+
+
+        public AuditorDTO MapToDto(Auditor model)
+        {
+
+            var dto = _mapper.Map<AuditorDTO>(model);
+
+            return dto;
+
+        }
+    }
+
+    public interface IMapper<T1, T2>
+    {
+        MapperConfiguration _config { get; set; }
+        Mapper _mapper { get; set; }
+
+        T1 MapToDto(T2 model);
+
+    }
+}
+```
+
+Create A Test
+
+```C#
+using Audit.Service.Services;
+using AutoFixture;
+using FluentAssertions;
+using Xunit;
 
 ```
 
 ```C#
-public class ModelMapperServiceShould
+
+
+    public class MapDtoServiceShould
     {
         [Fact]
-       public void MapConfiguraton()
+        public void MapConfiguraton()
         {
-            var sut = new ModelMapperService();
+            var sut = new MapDtoService();
 
             var config = sut._config;
 
@@ -319,14 +371,19 @@ public class ModelMapperServiceShould
         {
             //Arrange
             var fixture = new Fixture();
-            var sut = new ModelMapperService();
-            var session = fixture.Create<BrainstormSession>();
+            var sut = new MapDtoService();
+            var model = fixture.Create<Auditor>();
 
             //Act
-            var dto = sut.MapBrainstormSessionToDto(session);
+            var dto = sut.MapToDto(model);
 
 
             //Assert
-            dto.Should().BeOfType<BrainstormSessionDto>();
+            dto.Should().BeOfType<AuditorDTO>();
         }
+    }
+
+
+
+
 ```
