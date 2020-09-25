@@ -1,0 +1,162 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Code_Covarage_How_Session\\Numbers_Demo\\XUnit.Coverlet.MSBuild\\XUnit.Coverlet.MSBuild.csproj": {}
+  },
+  "projects": {
+    "C:\\Code_Covarage_How_Session\\Numbers_Demo\\Numbers\\Numbers.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Code_Covarage_How_Session\\Numbers_Demo\\Numbers\\Numbers.csproj",
+        "projectName": "Numbers",
+        "projectPath": "C:\\Code_Covarage_How_Session\\Numbers_Demo\\Numbers\\Numbers.csproj",
+        "packagesPath": "C:\\Users\\tioleson\\.nuget\\packages\\",
+        "outputPath": "C:\\Code_Covarage_How_Session\\Numbers_Demo\\Numbers\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\tioleson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\tioleson\\source\\repos\\FoundationUtilities.API": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.hangfire.io/nuget/hangfire-pro": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-rc.1.20452.10\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Code_Covarage_How_Session\\Numbers_Demo\\XUnit.Coverlet.MSBuild\\XUnit.Coverlet.MSBuild.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Code_Covarage_How_Session\\Numbers_Demo\\XUnit.Coverlet.MSBuild\\XUnit.Coverlet.MSBuild.csproj",
+        "projectName": "XUnit.Coverlet.MSBuild",
+        "projectPath": "C:\\Code_Covarage_How_Session\\Numbers_Demo\\XUnit.Coverlet.MSBuild\\XUnit.Coverlet.MSBuild.csproj",
+        "packagesPath": "C:\\Users\\tioleson\\.nuget\\packages\\",
+        "outputPath": "C:\\Code_Covarage_How_Session\\Numbers_Demo\\XUnit.Coverlet.MSBuild\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\tioleson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\tioleson\\source\\repos\\FoundationUtilities.API": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.hangfire.io/nuget/hangfire-pro": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Code_Covarage_How_Session\\Numbers_Demo\\Numbers\\Numbers.csproj": {
+                "projectPath": "C:\\Code_Covarage_How_Session\\Numbers_Demo\\Numbers\\Numbers.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.7.1, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.3.0, )"
+            },
+            "coverlet.msbuild": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.9.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-rc.1.20452.10\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

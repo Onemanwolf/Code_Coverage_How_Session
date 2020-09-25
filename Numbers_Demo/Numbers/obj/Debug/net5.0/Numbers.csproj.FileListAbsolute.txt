@@ -1,0 +1,12 @@
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\bin\Debug\net5.0\Numbers.deps.json
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\bin\Debug\net5.0\Numbers.dll
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\bin\Debug\net5.0\ref\Numbers.dll
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\bin\Debug\net5.0\Numbers.pdb
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\obj\Debug\net5.0\Numbers.csprojAssemblyReference.cache
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\obj\Debug\net5.0\Numbers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\obj\Debug\net5.0\Numbers.AssemblyInfoInputs.cache
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\obj\Debug\net5.0\Numbers.AssemblyInfo.cs
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\obj\Debug\net5.0\Numbers.csproj.CoreCompileInputs.cache
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\obj\Debug\net5.0\Numbers.dll
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\obj\Debug\net5.0\ref\Numbers.dll
+C:\Code_Covarage_How_Session\Numbers_Demo\Numbers\obj\Debug\net5.0\Numbers.pdb

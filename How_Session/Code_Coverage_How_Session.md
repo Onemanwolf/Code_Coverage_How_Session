@@ -23,7 +23,11 @@ From a command prompt in a new directory named UnitTestingCodeCoverage, create a
 ```Console
         dotnet new classlib -n Numbers
 ```
+Open Folder in VS Code or you can open it with Visual Studio but when you save make sure to save solution file in the root folder `Numbers_Demo`
 
+```Console
+C:\Code_Covarage_How_Session\Numbers_Demo>code .
+```
 The snippet below defines a simple `PrimeService` class that provides functionality to check if a number is prime. Copy the snippet below and replace the contents of the Class1.cs file that was automatically created in the Numbers directory. Rename the `Class1.cs` file to _PrimeService.cs_.
 
 The snippet below defines a simple PrimeService class that provides functionality to check if a number is prime. Copy the snippet below and replace the contents of the Class1.cs file that was automatically created in the Numbers directory. Rename the Class1.cs file to PrimeService.cs.
@@ -137,7 +141,9 @@ dotnet new sln -n XUnit.Coverage
 This will create a new solution file name XUnit.Coverage in the UnitTestingCodeCoverage directory. Add the projects to the root of the solution.
 
 ```Console
-dotnet sln XUnit.Coverage.sln add (ls **/*.csproj) --in-root
+dotnet sln XUnit.Coverage.sln add XUnit.Coverlet.Collector\XUnit.Coverlet.Collector.csproj --in-root
+dotnet sln XUnit.Coverage.sln add XUnit.Coverlet.MSBuild\XUnit.Coverlet.MSBuild.csproj --in-root
+dotnet sln XUnit.Coverage.sln add Numbers\Numbers.csproj --in-root
 
 ```
 
@@ -257,7 +263,9 @@ Below is the example `coverage.cobertura.xml` file.
 >
 > As an alternative, you could use the MSBuild package if your build system >already makes use of MSBuild. From the command prompt, change directories >to the XUnit.Coverlet.MSBuild project, and run the `dotnet test` command:
 >
-> ```.NET Core CLI
+> ```Console
+>cd ..
+>cd XUnit.Coverlet.MSBuild
 > dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
 >
 > ```
@@ -277,10 +285,7 @@ dotnet tool install -g dotnet-reportgenerator-globaltool
 Run the tool and provide the desired options, given the output coverage.cobertura.xml file from the previous test run.
 
 ```Console
-reportgenerator
-"-reports:Path\To\TestProject\TestResults\{guid}\coverage.cobertura.xml"
-"-targetdir:coveragereport"
--reporttypes:Html
+ reportgenerator -reports:C:\Code_Covarage_How_Session\Numbers_Demo\XUnit.Coverlet.Collector\TestResults\34d5ae77-5641-49db-84ee-bd188d0a3f28\coverage.cobertura.xml -targetdir:C:\Reports
 ```
 
 After running this command, an HTML file represents the generated report.
@@ -351,9 +356,6 @@ using Xunit;
 ```
 Create test `MapDtoServiceShould`
 ```C#
-
-namespace FACTS.Audit.Service.Test
-{
     public class MapDtoServiceShould
     {
         [Fact]
@@ -383,9 +385,6 @@ namespace FACTS.Audit.Service.Test
             dto.Should().BeOfType<AuditorDTO>();
         }
     }
-
-
-}
 
 
 ```
