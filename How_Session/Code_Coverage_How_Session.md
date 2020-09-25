@@ -23,11 +23,13 @@ From a command prompt in a new directory named UnitTestingCodeCoverage, create a
 ```Console
         dotnet new classlib -n Numbers
 ```
+
 Open Folder in VS Code or you can open it with Visual Studio but when you save make sure to save solution file in the root folder `Numbers_Demo`
 
 ```Console
 C:\Code_Covarage_How_Session\Numbers_Demo>code .
 ```
+
 The snippet below defines a simple `PrimeService` class that provides functionality to check if a number is prime. Copy the snippet below and replace the contents of the Class1.cs file that was automatically created in the Numbers directory. Rename the `Class1.cs` file to _PrimeService.cs_.
 
 The snippet below defines a simple PrimeService class that provides functionality to check if a number is prime. Copy the snippet below and replace the contents of the Class1.cs file that was automatically created in the Numbers directory. Rename the Class1.cs file to PrimeService.cs.
@@ -264,8 +266,8 @@ Below is the example `coverage.cobertura.xml` file.
 > As an alternative, you could use the MSBuild package if your build system >already makes use of MSBuild. From the command prompt, change directories >to the XUnit.Coverlet.MSBuild project, and run the `dotnet test` command:
 >
 > ```Console
->cd ..
->cd XUnit.Coverlet.MSBuild
+> cd ..
+> cd XUnit.Coverlet.MSBuild
 > dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
 >
 > ```
@@ -296,7 +298,6 @@ After running this command, an HTML file represents the generated report.
 
 Create a Mapper service `MapDtoService` that implements `IMapper<AuditorDTO, Auditor>` interface.
 
-
 Add usings
 
 ```C#
@@ -308,7 +309,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 ```
-Now add the replace class with below:
+
+Now replace class with below:
 
 ```C#
     public class MapDtoService : IMapper<AuditorDTO, Auditor>
@@ -345,7 +347,7 @@ Now add the replace class with below:
 }
 ```
 
-Create A Test
+Create A Test in the test project.
 
 ```C#
 using Audit.Service.Services;
@@ -354,7 +356,9 @@ using FluentAssertions;
 using Xunit;
 
 ```
+
 Create test `MapDtoServiceShould`
+
 ```C#
     public class MapDtoServiceShould
     {
@@ -389,16 +393,18 @@ Create test `MapDtoServiceShould`
 
 ```
 
+Manager pattern managers can be used to make sure a job get done as in real life but have the same function and may need to communicate across domains to get the job done so we will need a DTO to pass to other parts of the application. So in this example we the manager has dependency on our IMapper<T1, T2> to get it's DTO in the correct state before we start executing commands.
+
 ```C#
 public class AuditManager
     {
         public IMapper<AuditorDTO, Auditor> _mapper { get; set; }
-        public CampaignManager(IMapper<AuditorDTO, Auditor> mapper)
+        public AuditManager(IMapper<AuditorDTO, Auditor> mapper)
         {
             _mapper = mapper;
         }
 
-        public AuditorDTO CampaignAuditorDTO(Auditor auditor)
+        public AuditorDTO AuditorDTO(Auditor auditor)
         {
             var dto =   _mapper.MapToDto(auditor);
 
@@ -407,21 +413,24 @@ public class AuditManager
     }
 ```
 
+Now let's create test class for the Manager
+
+Create test class `AuditManagerShould`
+
+We will need the below using.
 
 ```C#
 using Audit.Service.Services;
 using AutoFixture;
-
 using FluentAssertions;
 using Moq;
 using Xunit;
 ```
 
-
-Create test class `ManagerShould`
+Replace the class with below:
 
 ```C#
- public class ManagerShould
+ public class AuditManagerShould
     {
         [Fact]
         public void AuditorDTO_AuditorDto()
@@ -441,3 +450,6 @@ Create test class `ManagerShould`
     }
 
 ```
+
+# Team Testing Homework
+Time for you share you work.
