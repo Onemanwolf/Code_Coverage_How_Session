@@ -361,6 +361,8 @@ using Xunit;
 
 Create test `MapDtoServiceShould`
 
+We Validate the configuration is valid with the [AssertConfigurationIsValid](https://docs.automapper.org/en/stable/Configuration-validation.html) provided by AutoMapper
+
 ```C#
     public class MapDtoServiceShould
     {
