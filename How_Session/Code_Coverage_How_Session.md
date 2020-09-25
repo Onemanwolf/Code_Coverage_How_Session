@@ -340,6 +340,8 @@ Now replace class with below:
 
     public interface IMapper<T1, T2>
     {
+
+        //replace T1 and T2 with your types you wish to map
         MapperConfiguration _config { get; set; }
         Mapper _mapper { get; set; }
 
