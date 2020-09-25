@@ -59,6 +59,8 @@ The snippet below defines a simple PrimeService class that provides functionalit
         }
 ```
 
+:bulb:
+
 > Tip:
 > It is worth mentioning the that Numbers class library was intentionally added to the System namespace. This allows for System.Math to be accessible without a using System; namespace declaration. For more information, see namespace (C# Reference).
 
