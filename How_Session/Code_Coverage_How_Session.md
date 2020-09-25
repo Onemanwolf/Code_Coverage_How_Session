@@ -349,10 +349,11 @@ using FluentAssertions;
 using Xunit;
 
 ```
-
+Create test `MapDtoServiceShould`
 ```C#
 
-
+namespace FACTS.Audit.Service.Test
+{
     public class MapDtoServiceShould
     {
         [Fact]
@@ -384,6 +385,60 @@ using Xunit;
     }
 
 
+}
 
+
+```
+
+```C#
+public class AuditManager
+    {
+        public IMapper<AuditorDTO, Auditor> _mapper { get; set; }
+        public CampaignManager(IMapper<AuditorDTO, Auditor> mapper)
+        {
+            _mapper = mapper;
+        }
+
+        public AuditorDTO CampaignAuditorDTO(Auditor auditor)
+        {
+            var dto =   _mapper.MapToDto(auditor);
+
+            return dto;
+        }
+    }
+```
+
+
+```C#
+using Audit.Service.Services;
+using AutoFixture;
+
+using FluentAssertions;
+using Moq;
+using Xunit;
+```
+
+
+Create test class `ManagerShould`
+
+```C#
+ public class ManagerShould
+    {
+        [Fact]
+        public void AuditorDTO_AuditorDto()
+        {
+            var fixture = new Fixture();
+            var mock = new Mock<IMapper<AuditorDTO, Auditor>>();
+            mock.Setup(m => m.MapToDto(It.IsAny<Auditor>())).Returns(fixture.Create<AuditorDTO>());
+            var sut = new Manager(mock.Object);
+            var auditor = fixture.Create<Auditor>();
+
+            var dto = sut.AuditorDTO(campaignAuditor);
+
+            dto.Should().BeOfType<AuditorDTO>();
+
+
+        }
+    }
 
 ```
